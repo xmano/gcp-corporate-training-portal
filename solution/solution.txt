@@ -1,0 +1,17 @@
+The project objective is to deploy a Corporate Training Portal 
+for employees.
+
+We will use the popular LMS - Moodle, which is also most widely
+used LMS in the world. 
+
+The Deployment Manager service is used for a faster provisioning
+and for filestorage, the Cloud Storage service was defined to 
+provide high availability.
+
+Project : xc-corporate-lms--325022
+
+
+https://storage.googleapis.com/xc-corporate-lms--325022/iLearnPdf.pdf
+
+https://storage.googleapis.com/xc-corporate-lms--325022/iLearnVideo.mp4
+
