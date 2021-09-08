@@ -1,0 +1,60 @@
+curl -g "http://<IP_MOODLE_SERVER>/webservice/rest/server.php?wstoken=<insert-token>&moodlewsrestformat=json&wsfunction=core_user_create_users&users[0][username]=929316&users[0][email]=you39@yourhost.org&users[0][lastname]=Test1&users[0][firstname]=Moodle&users[0][password]=P@40ssword123"
+
+Command to download the application and unzip it
+
+wget https://storage.googleapis.com/bootcamp-gcp-en/bootcamp-gcp-final-project.zip
+unzip bootcamp-gcp-final-project.zip
+
+//Creating Cloud Function
+https://us-central1-xc-corporate-lms--325022.cloudfunctions.net/moodleUserCreate
+
+
+
+Command to check whether the Cloud Function is working properly
+
+curl -X POST -F 'inputName=Jean' -F 'inputLastname=Rodrigues' -F 'inputEmail=jeanrodrigues123@gmail.com'  https://us-central1-xc-corporate-lms--325022.cloudfunctions.net/moodleUserCreate
+
+Creating the Cloud Storage Bucket
+
+gsutil mb gs://tcb-gl-onb-<your-name>
+
+gsutil mb gs://xc-hr-portal-lms--325022
+
+Uploading the Frontend files to the bucket
+
+cd ~/bootcamp-gcp-final-project/frontend/
+gsutil cp * gs://tcb-gl-onb-<your-name>
+
+Configuring the Cloud Storage Bucket
+
+gsutil web set -m index.html -e 404.html gs://tcb-gl-onb-<your-name>
+gsutil iam ch allUsers:objectViewer gs://tcb-gl-onb-<your-name>
+
+
+<form id="form-submit" class="form-submit" action="https://us-central1-xc-corporate-lms--325022.cloudfunctions.net/moodleUserCreate" method="POST">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Talent Management - Onboarding of New Employees</h1>
+        <p>Fill in the new employee's data to send onboarding information:</p>
+      </div>
+
+      <div class="form-label-group">
+        <input type="text" id="inputName" name="inputName" class="form-control" placeholder="First name" required="" autofocus="">
+        <label for="inputName">First name</label>
+      </div>
+
+      <div class="form-label-group">
+        <input type="text" id="inputLastname" name="inputLastname" class="form-control" placeholder="Last name" required="" autofocus="">
+        <label for="inputLastname">Last name</label>
+      </div>
+
+      <div class="form-label-group">
+        <input type="text" name="inputEmail" id="inputEmail" class="form-control" placeholder="E-mail address" required="" autofocus="">
+        <label for="inputEmail">E-mail address</label>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #0F7FAA" type="submit">Sent</button>
+      <p class="mt-5 mb-3 text-muted text-center">© The Cloud Bootcamp. All rights reserved (Sample site - created for educational purposes only - not allowed to copy, reproduce or distribute.) </p>
+    </form>
+
+    

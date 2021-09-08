@@ -1,0 +1,34 @@
+{
+  "name": "moodle-client",
+  "version": "0.5.2",
+  "description": "Node.js client for Moodle web services API",
+  "main": "client.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mudrd8mz/node-moodle-client.git"
+  },
+  "keywords": [
+    "moodle",
+    "api",
+    "webservice",
+    "rest",
+    "json"
+  ],
+  "author": "David Mudrák <david@moodle.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/mudrd8mz/node-moodle-client/issues"
+  },
+  "homepage": "https://github.com/mudrd8mz/node-moodle-client#readme",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

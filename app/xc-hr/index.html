@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+/**
+ * JAVASCRIPT client for Moodle 
+ *
+ * @author Manohar Bangera
+
+  Email Sending Example using EmailJS
+  emailjs.send("xc_sendgrid_test","template_c4r02it");
+
+ */-->
+
+<head>
+  <meta charset="utf-8" />
+  <title>Xkanda Clout HR</title>
+
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- Include CSS File Here -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+
+  <!-- add to homescreen for ios -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+<body>
+
+  <div class="center">
+    <img src="img/iLearnLogo.jpg" alt="iLearn" class="center">
+    <div class="container">
+      <div class="main">
+        <form class="form" method="post" action="#">
+          <h2>New Employee Registration v1.0</h2>
+          <label>Name :</label>
+          <input type="text" name="dname" id="name">
+          <label>Username :</label>
+          <input type="text" name="duname" id="username">
+          <label>Email :</label>
+          <input type="text" name="demail" id="email">
+          <label>Password :</label>
+          <input type="password" name="password" id="password">
+          <!-- <label>Confirm Password :</label>
+          <input type="password" name="cpassword" id="cpassword"> -->
+          <input type="button" name="register" id="register" value="Register">
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
