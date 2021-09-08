@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Talent Management - Onboarding of New Employees</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css.css" rel="stylesheet">
+
+    <script src="jquery.js"></script> 
+    <script src="jquery.form.js"></script> 
+ 
+    <script> 
+        $(document).ready(function() { 
+            $('#form-submit').ajaxForm(function(response) { 
+                alert(response); 
+                $("#form-submit").trigger("reset");
+            }); 
+
+        }); 
+    </script> 
+
+  </head>
+
+  <body>
+    <form id="form-submit" class="form-submit" action="https://us-central1-key-chalice-294821.cloudfunctions.net/function-3" method="POST">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="logo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Talent Management - Onboarding of New Employees</h1>
+        <p>Page Not Found:(</p>
+      </div>
+      <p class="mt-5 mb-3 text-muted text-center">&copy; The Cloud Bootcamp. All rights reserved (Sample site - created for educational purposes only - not allowed to copy, reproduce or distribute.) </p>
+    </form>
+  </body>
+</html>

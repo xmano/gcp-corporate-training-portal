@@ -1,0 +1,6 @@
+# Function dependencies, for example:
+# package>=version
+
+flask
+flask-cors
+requests
