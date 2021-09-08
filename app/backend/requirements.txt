@@ -4,3 +4,5 @@
 flask
 flask-cors
 requests
+python-http-client>=3.2.1
+sendgrid

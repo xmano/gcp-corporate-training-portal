@@ -1,8 +1,12 @@
-import requests
+﻿import requests
 import json
 import os
 from flask import escape
 from flask_cors import CORS, cross_origin
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail, Email
+from python_http_client.exceptions import HTTPError
+
 
 @cross_origin()
 def receive_request(request):
@@ -24,10 +28,22 @@ def receive_request(request):
         print('RR:ERROR:PARAMETER_NOT_FOUND')
         return 'Error, contact your system administrator!'
 
-def moodle_user_create(email,firstname,lastname):
+def moodle_user_create(email, firstname, lastname):
+    """Sends login information to the new user
+
+    Parameters:
+    emailid (string): email id of the new user
+    firstname  (string): user's first name
+    lastname   (string): user's last name
+
+    Returns:
+    none
+
+    """
     
     token = os.environ.get('MOODLE_TOKEN')
     server = os.environ.get('MOODLE_SERVER')
+    initial_pwd = os.environ.get('INITIAL_PASSWORD')
 
     function = 'core_user_create_users'
     url = 'http://{0}/webservice/rest/server.php?wstoken={1}&wsfunction={2}&moodlewsrestformat=json'.format(server,token,function)
@@ -39,7 +55,7 @@ def moodle_user_create(email,firstname,lastname):
             'users[0][email]': email,
             'users[0][lastname]': lastname,
             'users[0][firstname]': firstname,
-            'users[0][password]': 'P@40ssword123'}
+            'users[0][password]': initial_pwd}
 
     try:
         response = requests.post(url,data=users)
@@ -47,9 +63,54 @@ def moodle_user_create(email,firstname,lastname):
             print('Result: ' + response.text)
             return 'error'
         else:
+            send_email_newuser(email, username, initial_pwd)
             print('Result: ' + response.text)
             return 'success'
     except Exception as e:
         print(e)
         return 'error'
+
+
+def send_email_newuser(emailid, userid, passwd):
+    """Sends login information to the new user
+
+    Parameters:
+    emailid (string): email id of the new user
+    userid  (string): user id of the new user
+    passwd  (string): password of the new user to login
+
+    Returns:
+    none
+
+    """
+    sg_api_key = os.environ.get('SENDGRID_API_KEY')
+    sg = SendGridAPIClient(sg_api_key)
+    
+    html_content = f"""
+    <p>Hello {userid},</p>
+    <br>
+    <p>Welcome to Xkanda Corporate Learning Portal iLearn </a></p>
+    <br>
+    <br>
+    <p>Your Login ID is  : {userid}, <br>
+    <p>Password is : {passwd}
+
+
+    <p>From,</p>
+    <p>Xkanda Technologies</p>
+    """
+
+    message = Mail(
+        to_emails=emailid,
+        from_email=Email('xkandacloud@gmail.com', "IT Admin - Xkanda Technologies"),
+        subject=f"Welcome to Corporate Learning Portal",
+        html_content=html_content
+        )
+    #message.add_bcc("bcc@email.com")
+
+    try:
+        response = sg.send(message)
+        return f"email.status_code={response.status_code}"
+    except HTTPError as e:
+        return e.message
 
